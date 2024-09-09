@@ -1,0 +1,9 @@
+<ng-container *ngIf="popularTagsData$ | async as popularTags">
+	<app-loading *ngIf="popularTags.isBeingLoaded"></app-loading>
+	<app-error-message *ngIf="popularTags.error" [message]="popularTags.error"></app-error-message>
+	<div class="border border-2 rounded text-end p-2">
+		<h5>Popular Tags </h5>
+		<a class="badge rounded-pill bg-dark text-light fw-normal text-decoration-none mx-1"
+			*ngFor="let popularTag of popularTags.data" [routerLink]="['/tags', popularTag ]"> {{ popularTag}}</a>
+	</div>
+</ng-container>

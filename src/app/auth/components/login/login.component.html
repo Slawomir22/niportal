@@ -1,0 +1,39 @@
+<ng-container *ngIf="stateData$ | async as stateData ">
+	<div class="container">
+		<form [formGroup]="loginForm" class="row justify-content-center mt-5" (ngSubmit)="sendLoginData()">
+			<div class="col-8">
+				<h1 class="text-center mb-4">Log in</h1>
+				<div class="d-flex justify-content-center  mb-3">
+					<a class="text-decoration-none  text-success" routerLink="/register">Register if you don't have an
+						account
+						?
+					</a>
+				</div>
+				<app-backend-errors *ngIf="stateData.backendErrors"
+					[backendErrors]="stateData.backendErrors"></app-backend-errors>
+				<div class="row mb-3">
+					<label for="email" class="col-md-4 col-form-label">Email</label>
+					<div class="col-md-8">
+						<input type="email" formControlName="email" class="form-control" id="email">
+					</div>
+					<div class="invalid"
+						*ngIf="loginForm.get('email')?.invalid && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)">
+						Please provide a valid e-mail.
+					</div>
+				</div>
+				<div class="row mb-3">
+					<label for="password" class="col-md-4 col-form-label">Password</label>
+					<div class="col-md-8">
+						<input type="password" formControlName="password" class="form-control" id="password">
+					</div>
+					<div class="invalid"
+						*ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)">
+						Please provide a password (at least 6 characters).
+					</div>
+				</div>
+				<button type="submit" [disabled]="loginForm.invalid ||  stateData.isBeingSent"
+					class="btn btn-success">Log in</button>
+			</div>
+		</form>
+	</div>
+</ng-container>

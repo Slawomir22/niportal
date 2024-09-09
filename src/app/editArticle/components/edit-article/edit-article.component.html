@@ -1,0 +1,7 @@
+<ng-container *ngIf="editArticleData$ | async as editArticleData">
+	<app-loading *ngIf="editArticleData.isBeingLoaded"></app-loading>
+	<app-article-form *ngIf="editArticleData.articleData" [isBeingSubmitted]="editArticleData.isBeingSubmitted"
+		(articleFormData)="onSubmit($event)" [errors]="editArticleData.errors"
+		[articleData]="editArticleData.articleData">
+	</app-article-form>
+</ng-container>

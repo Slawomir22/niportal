@@ -1,0 +1,32 @@
+<ng-container *ngIf="articleData$ | async as articleData">
+	<app-loading *ngIf="articleData.isBeingLoaded"></app-loading>
+	<app-error-message *ngIf="articleData.error" [message]="articleData.error"></app-error-message>
+	<div class="card text-center mb-1 w-75 mx-auto" *ngIf="articleData.article">
+		<div class="card-header">
+			<h3>{{ articleData.article.title }}</h3>
+			<a [routerLink]="['/profiles', articleData.article.author.username]">
+				<img class="img-thumbnail" width="100px" height="100px" [src]="articleData.article.author.image"
+					alt="" />
+			</a>
+			<br>
+			<a [routerLink]="['./profiles',articleData.article.author.username]"
+				class="card-title text-decoration-none"> {{
+				articleData.article.author.username}}
+			</a>
+		</div>
+		<div class="card-body">
+			<p> created at : {{articleData.article.createdAt }} </p>
+			<div *ngIf="articleData.isAuthor">
+				<a class="card-text  text-decoration-none btn btn-secondary btn-sm me-1"
+					[routerLink]="['/articles',articleData.article.slug , 'edit']">
+					<i class="bi bi-pencil"></i>
+				</a>
+				<a (click)="renoveArticle()" class="card-text text-decoration-none btn btn-danger btn-sm">
+					Remove Article
+				</a>
+			</div>
+			<p class="text-start card-text"> {{articleData.article.body }}</p>
+			<app-tag-list [tags]="articleData.article.tagList"></app-tag-list>
+		</div>
+	</div>
+</ng-container>

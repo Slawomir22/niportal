@@ -1,0 +1,42 @@
+<ng-container *ngIf="stateData$ | async as stateData">
+	<nav class="navbar navbar-dark bg-dark navbar-expand-lg mb-4">
+		<div class="container-fluid">
+			<div class="me-5">
+				<a class="navbar-brand fw-bolder fs-3" routerLink="/">NiPortal </a>
+				<p class="fs-6 fw-normal text-white ">A space for
+					bloggers</p>
+			</div>
+			<ul class="navbar-nav me-auto">
+				<li class="nav-item">
+					<a class="nav-link active" aria-current="page" routerLink="/">Home</a>
+				</li>
+				<ng-container *ngIf="stateData.user">
+					<li class="nav-item">
+						<a class="nav-link" routerLink="/articles/new"><i class="bi bi-file-earmark-text">
+							</i> New Post</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" routerLink="/settings"><i class="bi bi-gear"></i> Settings</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" [routerLink]="['/profile' , stateData.user.username ]">
+							<img width="23px" height="23px" [src]="stateData.user.image" /> {{
+							stateData.user.username }} </a>
+					</li>
+				</ng-container>
+				<ng-container *ngIf="stateData.user === null">
+					<li class="nav-item">
+						<a class="nav-link" routerLink="/login">Log in</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" routerLink="/register">Create account</a>
+					</li>
+				</ng-container>
+			</ul>
+			<form class="d-flex" role="search">
+				<input class="form-control me-2" type="search" placeholder="Type text" aria-label="Search">
+				<button class="btn btn-light" type="submit">Search</button>
+			</form>
+		</div>
+	</nav>
+</ng-container>

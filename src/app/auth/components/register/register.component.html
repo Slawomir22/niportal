@@ -1,0 +1,47 @@
+<ng-container *ngIf="stateData$ | async as stateData ">
+	<div class="container">
+		<form [formGroup]="registerForm" class="row justify-content-center mt-5" (ngSubmit)="sendRegisterData()">
+			<div class="col-8">
+				<h1 class="text-center mb-4">Creating Account</h1>
+				<div class="d-flex justify-content-center  mb-3">
+					<a class="text-decoration-none  text-success" routerLink="/login">Do you have already an account ?
+					</a>
+				</div>
+				<app-backend-errors *ngIf="stateData.backendErrors"
+					[backendErrors]="stateData.backendErrors"></app-backend-errors>
+				<div class="row mb-3">
+					<label for="username" class="col-md-4 col-form-label">Username</label>
+					<div class="col-md-8">
+						<input type="text" formControlName="username" class="form-control" id="username">
+					</div>
+					<div class="invalid"
+						*ngIf="registerForm.get('username')?.invalid && (registerForm.get('username')?.dirty || registerForm.get('username')?.touched)">
+						Please provide a username.
+					</div>
+				</div>
+				<div class="row mb-3">
+					<label for="email" class="col-md-4 col-form-label">Email</label>
+					<div class="col-md-8">
+						<input type="email" formControlName="email" class="form-control" id="email">
+					</div>
+					<div class="invalid"
+						*ngIf="registerForm.get('email')?.invalid && (registerForm.get('email')?.dirty || registerForm.get('email')?.touched)">
+						Please provide a valid e-mail.
+					</div>
+				</div>
+				<div class="row mb-3">
+					<label for="password" class="col-md-4 col-form-label">Password</label>
+					<div class="col-md-8">
+						<input type="password" formControlName="password" class="form-control" id="password">
+					</div>
+					<div class="invalid"
+						*ngIf="registerForm.get('password')?.invalid && (registerForm.get('password')?.dirty || registerForm.get('password')?.touched)">
+						Please provide a password (at least 6 characters).
+					</div>
+				</div>
+				<button type="submit" [disabled]=" registerForm.invalid ||  stateData.isBeingSent"
+					class="btn btn-success">Sign Up</button>
+			</div>
+		</form>
+	</div>
+</ng-container>

@@ -1,0 +1,14 @@
+<ul class="nav nav-tabs my-2">
+	<li class="nav-item">
+		<a class="nav-link" routerLink="/feed" *ngIf="currentUser$ | async" routerLinkActive="active">Your Feed</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+			queryParamsHandling="merge">Global
+			Feed</a>
+	</li>
+	<li class="nav-item" *ngIf="tagName">
+		<a class="nav-link" [routerLink]="['/tags', tagName]" routerLinkActive="active">{{ tagName}}</a>
+	</li>
+
+</ul>
