@@ -34,8 +34,21 @@ export class ArticleFormComponent implements OnInit {
 			title: new FormControl('', Validators.required),
 			description: new FormControl('', Validators.required),
 			body: new FormControl('', Validators.required),
-			tagList: new FormControl('', Validators.required) // this.initialValues.tagList ? this.initialValues.tagList.join(' ')
+			tagList: new FormControl('', Validators.required)
 		})
+
+		if (this.articleData) {
+			this.articleForm.patchValue({
+				title: this.articleData.title,
+				descripition: this.articleData.description,
+				body: this.articleData.body,
+				tagList: this.articleData.tagList.join(' ')
+
+			})
+
+		}
+
+
 	}
 
 	onSubmitArticleForm(): void {
