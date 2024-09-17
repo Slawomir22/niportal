@@ -40,7 +40,7 @@ export class ArticleFormComponent implements OnInit {
 		if (this.articleData) {
 			this.articleForm.patchValue({
 				title: this.articleData.title,
-				descripition: this.articleData.description,
+				description: this.articleData.description,
 				body: this.articleData.body,
 				tagList: this.articleData.tagList.join(' ')
 
