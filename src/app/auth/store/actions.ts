@@ -3,6 +3,7 @@ import { RequestRegister } from "../models/requestRegister";
 import { User } from "src/app/shared/models/user";
 import { BackEndErrors } from "../../shared/models/backEndErrors";
 import { RequestLogin } from "../models/requestLogin";
+import { RequestUser } from "src/app/shared/models/requestUser";
 
 
 export const authUserActions = createActionGroup({
@@ -19,6 +20,10 @@ export const authUserActions = createActionGroup({
 		get_user: emptyProps(),
 		get_user_success: props<{ user: User }>(),
 		get_user_failure: emptyProps(),
+
+		update_user: props<{ user: RequestUser }>(),
+		update_user_success: props<{ user: User }>(),
+		update_user_failure: props<{ errors: BackEndErrors }>()
 
 	}
 

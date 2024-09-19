@@ -31,6 +31,10 @@ export const appRoutes: Routes = [
 	{
 		path: 'articles/:slug/edit',
 		loadChildren: () => import('src/app/editArticle/editArticle.routes').then((m) => m.editArticleRoutes)
+	},
+	{
+		path: 'settings',
+		loadChildren: () => import('src/app/settings/settings.routes').then((m) => m.settingsRoutes)
 	}
 
 ];

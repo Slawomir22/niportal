@@ -1,5 +1,5 @@
 import { inject } from "@angular/core";
-import { Actions, act, createEffect, ofType } from "@ngrx/effects";
+import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { AuthService } from "../services/auth.service";
 import { authUserActions } from "./actions";
 import { catchError, map, of, switchMap, tap } from "rxjs";
@@ -7,7 +7,6 @@ import { User } from "src/app/shared/models/user";
 import { HttpErrorResponse } from "@angular/common/http";
 import { PersisitenceService } from "src/app/shared/services/persisitence.service";
 import { Router } from "@angular/router";
-
 
 
 
@@ -105,3 +104,26 @@ export const redirectOnLoginEffect = createEffect(
 )
 
 
+export const updateUserEffect = createEffect(
+	(actions$ = inject(Actions), authService = inject(AuthService)) => {
+		return actions$.pipe(
+			ofType(authUserActions.update_user),
+			switchMap(({ user }) => {
+				return authService.updateUser(user).pipe(
+					map((user: User) => {
+						return authUserActions.update_user_success({ user })
+					}),
+					catchError((errorsResponse: HttpErrorResponse) => {
+						return of(authUserActions.update_user_failure({
+							errors: errorsResponse.error.errors
+						}));
+					})
+
+				)
+			}),
+
+
+		)
+	}, { functional: true }
+
+)

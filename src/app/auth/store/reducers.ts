@@ -2,6 +2,8 @@ import { createFeature, createReducer, on } from "@ngrx/store";
 import { StateAuth } from "../models/stateAuth";
 import { authUserActions } from "./actions";
 import { routerNavigatedAction } from "@ngrx/router-store";
+import { state } from "@angular/animations";
+import { Action } from "rxjs/internal/scheduler/Action";
 
 const initialState: StateAuth = {
 	isBeingSent: false,
@@ -26,6 +28,7 @@ const authFunctionality = createFeature({
 		on(authUserActions.get_user, (state) => ({ ...state, isBeingLoaded: true })),
 		on(authUserActions.get_user_success, (state, action) => ({ ...state, isBeingLoaded: false, user: action.user })),
 		on(authUserActions.get_user_failure, (state) => ({ ...state, isBeingLoaded: false, user: null })),
+		on(authUserActions.update_user_success, (state, action) => ({ ...state, user: action.user })),
 		on(routerNavigatedAction, (state) => ({ ...state, validationErrors: null })),
 
 

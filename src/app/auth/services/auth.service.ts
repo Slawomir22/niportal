@@ -6,6 +6,7 @@ import { User } from 'src/app/shared/models/user';
 import { AuthUser } from '../models/authUser';
 import { environment } from 'src/environments/environment.development';
 import { RequestLogin } from '../models/requestLogin';
+import { RequestUser } from 'src/app/shared/models/requestUser';
 
 @Injectable({
 	providedIn: 'root'
@@ -31,6 +32,13 @@ export class AuthService {
 	getUser(): Observable<User> {
 		const api_URL = environment.api_URL + '/user';
 		return this.http.get<AuthUser>(api_URL).pipe(
+			map((reply) => reply.user)
+		)
+	}
+
+	updateUser(user: RequestUser): Observable<User> {
+		const api_URL = environment.api_URL + '/user';
+		return this.http.put<AuthUser>(api_URL, user).pipe(
 			map((reply) => reply.user)
 		)
 	}
