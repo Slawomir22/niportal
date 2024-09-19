@@ -2,12 +2,10 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-
 import { RequestRegister } from '../../models/requestRegister';
 import { StateAuth } from '../../models/stateAuth';
-import { selectIsBeingSent, selectValidationErrors } from '../../store/reducers';
+import { selectIsBeingSent, selectErrors } from '../../store/reducers';
 import { RouterLink } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
 import { combineLatest } from 'rxjs';
 import { BackendErrorsComponent } from 'src/app/shared/components/backend-errors/backend-errors.component';
 import { authUserActions } from '../../store/actions';
@@ -23,7 +21,7 @@ import { authUserActions } from '../../store/actions';
 export class RegisterComponent {
 
 	isBeingSent$ = this.store.select(selectIsBeingSent);
-	backendErrors$ = this.store.select(selectValidationErrors);
+	backendErrors$ = this.store.select(selectErrors);
 
 	stateData$ = combineLatest({
 		isBeingSent: this.isBeingSent$,
