@@ -5,5 +5,5 @@ export interface StateAuth {
 	isBeingSent: boolean;
 	user: User | null | undefined;
 	isBeingLoaded: boolean;
-	validationErrors: BackEndErrors | null;
+	errors: BackEndErrors | null;
 }
