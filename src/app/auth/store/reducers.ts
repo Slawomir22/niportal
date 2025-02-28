@@ -4,6 +4,7 @@ import { authUserActions } from "./actions";
 import { routerNavigatedAction } from "@ngrx/router-store";
 
 
+
 const initialState: StateAuth = {
 	isBeingSent: false,
 	user: undefined,
@@ -29,6 +30,7 @@ const authFunctionality = createFeature({
 		on(authUserActions.get_user_failure, (state) => ({ ...state, isBeingLoaded: false, user: null })),
 		on(authUserActions.update_user_success, (state, action) => ({ ...state, user: action.user })),
 		on(routerNavigatedAction, (state) => ({ ...state, validationErrors: null })),
+		on(authUserActions.logout, (state) => ({ ...state, ...initialState, user: null }))
 
 
 	),
