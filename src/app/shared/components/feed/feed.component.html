@@ -12,7 +12,12 @@
 			</a>
 		</div>
 		<div class="card-body">
-			<p> created at : {{ article.createdAt }} <span> - ADD TO FAVORITE</span></p>
+			<p> created at : {{ article.createdAt }}
+				<span>
+					<app-add-to-favorites [isFavorited]="article.favorited" [favoritesCount]="article.favoritesCount"
+						[articleSlug]="article.slug"></app-add-to-favorites>
+				</span>
+			</p>
 			<a class="card-text link-dark text-decoration-none" [routerLink]="['/articles', article.slug]">
 				<h5 class="text-start fw-bolder">{{ article.title }}</h5>
 				<p class="text-start"> {{ article.description }}</p>

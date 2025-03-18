@@ -1,0 +1,5 @@
+<button type="button" (click)="manageLikes()" class="btn btn-sm float-end"
+	[ngClass]="{ 'btn-secondary': isFavorited, 'btn-outline-secondary': !isFavorited }">
+	<i class="bi bi-heart-fill"></i>
+	<span class="ms-1">{{ favoritesCount }}</span>
+</button>

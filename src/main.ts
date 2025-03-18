@@ -15,6 +15,8 @@ import * as allFeedEffects from "./app/shared/components/feed/store/effects";
 import { feedFunctionalityKey, feedFunctionalityReducer } from "./app/shared/components/feed/store/reducer";
 import { popularTagsFunctionalityKey, popularTagsFunctionalityReducer } from "./app/shared/components/popularTags/store/reducers";
 import * as allPopularTagsEffects from "./app/shared/components/popularTags/store/effects";
+import * as allAddToFavoritesEffects from "./app/shared/components/add-to-favorites/store/effects";
+import { AddToFavoritesService } from "./app/shared/components/add-to-favorites/services/add-to-favorites.service";
 
 
 
@@ -29,7 +31,8 @@ bootstrapApplication(AppComponent, {
 		provideEffects(
 			allAuthUserEffects,
 			allFeedEffects,
-			allPopularTagsEffects
+			allPopularTagsEffects,
+			allAddToFavoritesEffects
 		),
 		provideStoreDevtools({
 			maxAge: 25,
@@ -42,5 +45,6 @@ bootstrapApplication(AppComponent, {
 		provideState(authFunctionalityKey, authFunctionalityReducer),
 		provideState(feedFunctionalityKey, feedFunctionalityReducer),
 		provideState(popularTagsFunctionalityKey, popularTagsFunctionalityReducer),
+		AddToFavoritesService
 	]
 })

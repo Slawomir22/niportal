@@ -11,12 +11,13 @@ import { PaginationComponent } from '../pagination/pagination.component';
 import { environment } from 'src/environments/environment';
 import queryString from 'query-string';
 import { TagListComponent } from '../tag-list/tag-list.component';
+import { AddToFavoritesComponent } from "../add-to-favorites/add-to-favorites.component";
 
 @Component({
 	selector: 'app-feed',
 	templateUrl: './feed.component.html',
 	styleUrls: ['./feed.component.css'],
-	imports: [CommonModule, RouterLink, ErrorMessageComponent, LoadingComponent, PaginationComponent, TagListComponent],
+	imports: [CommonModule, RouterLink, ErrorMessageComponent, LoadingComponent, PaginationComponent, TagListComponent, AddToFavoritesComponent],
 	standalone: true
 })
 export class FeedComponent implements OnInit, OnChanges {
