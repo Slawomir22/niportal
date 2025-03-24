@@ -9,8 +9,7 @@ import { addToFavoritesActions } from './store/actions';
 	templateUrl: './add-to-favorites.component.html',
 	styleUrls: ['./add-to-favorites.component.css'],
 	standalone: true,
-	imports: [CommonModule],
-	//providers: [AddToFavoritesService]
+	imports: [CommonModule]
 })
 export class AddToFavoritesComponent {
 	private store = inject(Store);
