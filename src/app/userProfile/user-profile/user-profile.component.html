@@ -27,10 +27,8 @@
 					<li class="nav-item">
 						<a class="nav-link" [routerLink]="['/profiles', data.userProfile.username, 'favorites']"
 							aria-current="page" routerLinkActive="active"
-							[routerLinkActiveOptions]="{exact:true}">Favorites posts</a>
-
+							[routerLinkActiveOptions]="{exact:true}">Favorite posts</a>
 					</li>
-
 				</ul>
 				<app-feed [apiURL]="getApiUrl()"></app-feed>
 			</div>
