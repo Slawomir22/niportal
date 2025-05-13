@@ -1,1 +1,39 @@
-<p>user-profile works!</p>
+<ng-container *ngIf="data$ | async as data">
+	<div class="container" *ngIf="data.userProfile">
+		<div class="row">
+			<div class="col-12">
+				<div class="card mb-3">
+					<img [src]="data.userProfile.image" class="card-img-top" class="img-fluid mx-auto m-1" width="200"
+						height="200" al="user-image">
+					<div class="card-body">
+						<h5 class="card-title text-center">{{ data.userProfile.username}}</h5>
+						<p class="card-text"> {{ data.userProfile.bio}}</p>
+						<div class="d-flex justify-content-between">
+							<h5>FOLLOW USER BUTTON</h5>
+							<a *ngIf="data.isCurrentUserProfile" class="btn btn-sm btn-outline-secondary"
+								routerLink="/settings">Edit Profile's Settings</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<ul class="nav nav-tabs">
+					<li class="nav-item">
+						<a class="nav-link" [routerLink]="['/profiles', data.userProfile.username]" aria-current="page"
+							routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">My posts</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" [routerLink]="['/profiles', data.userProfile.username, 'favorites']"
+							aria-current="page" routerLinkActive="active"
+							[routerLinkActiveOptions]="{exact:true}">Favorites posts</a>
+
+					</li>
+
+				</ul>
+				<app-feed [apiURL]="getApiUrl()"></app-feed>
+			</div>
+		</div>
+	</div>
+</ng-container>
