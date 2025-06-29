@@ -1,12 +1,12 @@
 # NiPortal - the platform for bloggers
 This application is for bloggers  
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.4.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.4. and updated to  version 16.2,12 later.
 
 Main technologies used:
-Angular - version 15.2,
+Angular - version 16.2,
 Rxjs - version 7.8.
-Typescript" - version 4.9,
+Typescript" - version 4.9
 NgRx - version 15.4,
 NgRx Router - 17.2,
 Bootstrap - 5.3,
